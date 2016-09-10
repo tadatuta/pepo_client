@@ -3,7 +3,7 @@ block('profile').elem('body')(
         function () {
             return {
                 block: 'radio-group',
-                mods: { theme: 'simple', size: 'm', type: 'button' },
+                mods: { theme: 'islands', size: 'm', type: 'button' },
                 mix: { block: 'profile', elem: 'radio' },
                 val: 0,
                 options: ['pep', 'picture', 'like'].map(function (v, i) {

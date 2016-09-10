@@ -9,13 +9,14 @@ block('profile').elem('header')(
                     url: '/profile-edit/',
                     icon: {
                         block: 'icon',
-                        mods: { profile: 'back' }
+                        mods: { profile: 'edit' }
                     }
                 },
                 {
                     block: 'image',
                     mods: { type: 'avatar' },
-                    url: this.ctx.url
+                    url: this.ctx.url,
+                    js: false
                 },
                 {
                     block: 'about-user',

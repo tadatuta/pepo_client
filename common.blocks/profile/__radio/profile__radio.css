@@ -1,5 +1,4 @@
 .profile__radio .radio{
-    background-color: #fe427c;
     display: inline-block;
     width: 33.32%;
     height: 50px;
@@ -7,8 +6,7 @@
     border-radius: 0;
 }
 
-.profile__radio .radio .button_theme_simple {
-    background-color: inherit;
+.profile__radio .radio .button_theme_islands {
     padding: 0;
     border: none;
     width: 100%;
@@ -16,8 +14,9 @@
     border-radius: 0;
 }
 
-.profile__radio .radio .button_checked {
-    background-color: #2D2D36;
+.button_theme_islands.button_checked.button_hovered,
+.profile__radio .button_theme_islands.button_checked:before {
+    /*background: #fff709;*/
 }
 
 .profile__radio .icon_like {

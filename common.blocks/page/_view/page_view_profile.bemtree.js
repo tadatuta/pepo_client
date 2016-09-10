@@ -11,7 +11,13 @@ block('page').mod('view', 'profile')(
                 block: 'body'
             },
             {
-                block: 'footer'
+                block: 'footer',
+                content: {
+                    block: 'hidden-menu',
+                    mods: { side: 'right' },
+                    url: ['/profile-edit/'],
+                    content: ['Изменить', 'Аватар', 'Имя пользователя']
+                }
             }
         ];
     })

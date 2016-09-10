@@ -2,16 +2,7 @@
     display: block;
 }
 
-.about-user .text_username {
-    color: #fff;
-}
-
-.about-user .text_id {
-    color: #c0c0c0;
-}
-
 .about-user .text_about {
-    color: #fff;
     padding: 10px 5px;
     font-size: smaller;
 }

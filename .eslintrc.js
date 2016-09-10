@@ -28,7 +28,8 @@ module.exports = {
         "curly": 0,
         "max-len": 0,
         "block-scoped-var": 0,
-        "no-redeclare": 0
+        "no-redeclare": 0,
+        "eqeqeq": 0
     },
     "plugins": [
         "bem-xjst"
