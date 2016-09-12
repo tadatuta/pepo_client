@@ -1,0 +1,56 @@
+.hidden-menu .menu {
+    display: block;
+    position: fixed;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    width: 150px;
+    background-color: #fff;
+    height: 100%;
+    top: 0;
+    transition: left .2s;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+}
+
+.hidden-menu .checkbox {
+    color: #fff;
+    padding: 5px;
+    position: fixed;
+    top: 5px;
+    cursor: pointer;
+    transition: left .23s;
+    z-index: 3;
+    width: 25px;
+    height: 25px;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+}
+
+.hidden-menu .checkbox .icon_edit {
+    margin: 0;
+    width: 100%;
+    line-height: 25px;
+}
+
+.hidden-menu .checkbox .button_theme_simple {
+    border: none;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+
+.hidden-menu .checkbox .button_theme_simple.button_checked {
+    background: inherit;
+}
+
+.hidden-menu .checkbox .text {
+    display: block;
+    height: 5px;
+    background-color: #fff;
+    margin: 5px 0 0;
+    transition: all .1s linear .23s;
+    position: relative;
+}

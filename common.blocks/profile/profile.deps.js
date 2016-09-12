@@ -1,6 +1,7 @@
 ({
     mustDeps: [
-        { elem: ['header', 'body', 'radio', 'to-edit'] },
-        { block: 'tweets' }
+        { elem: ['header', 'body', 'radio', 'optional', 'to-edit'] },
+        { block: 'tweets' },
+        { block: 'hidden-menu' }
     ]
 });

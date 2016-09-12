@@ -12,6 +12,9 @@ block('profile')(
                 },
                 {
                     elem: 'body'
+                },
+                {
+                    elem: 'optional'
                 }
             ];
         }

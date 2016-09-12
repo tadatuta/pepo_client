@@ -1,0 +1,22 @@
+.hidden-menu_side_right .menu {
+    right: -200px;
+}
+
+.hidden-menu_side_right .checkbox {
+    right: 10px;
+}
+
+.hidden-menu_side_right .checkbox.checkbox_checked ~ .menu {
+    right: 0;
+}
+
+.hidden-menu_side_right .checkbox .icon_edit {
+    background-image: url('../img/edit.svg');
+    margin: 0;
+    width: 100%;
+    line-height: 25px;
+}
+
+.hidden-menu_side_right .checkbox.checkbox_checked .icon_edit {
+    background-image: url('../img/edit-active.svg');
+}
