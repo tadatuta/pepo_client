@@ -1,4 +1,4 @@
-modules.define('profile', ['i-bem__dom', 'BEMHTML'], function (provide, BEMDOM, BEMHTML) {
+modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, BEMDOM, BEMHTML, $) {
 
     provide(BEMDOM.decl(this.name,
         {
@@ -7,11 +7,8 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML'], function (provide, BEMDOM, 
                     var radio = this.findBlockInside('radio-group'),
                         optional = this.elem('optional');
 
-                    if (radio) {
-                        BEMDOM.update(optional,
-                            BEMHTML.apply({
-                                block: 'tweets'
-                            }));
+                    if (radio.getVal() == 0) {
+
                     }
 
                     radio.bindTo('click', function () {
@@ -19,26 +16,33 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML'], function (provide, BEMDOM, 
 
                         switch (val) {
                             case '0':
-                                BEMDOM.update(optional,
-                                BEMHTML.apply({
-                                    block: 'tweets'
-                                }));
+                                $.ajax({
+                                    url: window.config.frontend_server + '/get-last',
+                                    success: function (data) {
+                                        BEMDOM.update(optional,
+                                        BEMHTML.apply(data));
+                                    }
+                                });
                                 break;
 
                             case '1' :
-                                BEMDOM.update(optional,
-                                BEMHTML.apply({
-                                    block: 'tweets',
-                                    mods: { display: 'picture' }
-                                }));
+                                $.ajax({
+                                    url: window.config.frontend_server + '/get-pics',
+                                    success: function (data) {
+                                        BEMDOM.update(optional,
+                                        BEMHTML.apply(data));
+                                    }
+                                });
                                 break;
 
                             case '2' :
-                                BEMDOM.update(optional,
-                                BEMHTML.apply({
-                                    block: 'tweets',
-                                    mods: { display: 'like' }
-                                }));
+                                $.ajax({
+                                    url: window.config.frontend_server + '/get-likes',
+                                    success: function (data) {
+                                        BEMDOM.update(optional,
+                                        BEMHTML.apply(data));
+                                    }
+                                });
                                 break;
                         }
                     });
@@ -47,5 +51,4 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML'], function (provide, BEMDOM, 
         },
         {}
     ));
-})
-;
+});

@@ -6,16 +6,11 @@ block('profile').elem('body')(
                 mods: { theme: 'islands', size: 'm', type: 'button' },
                 mix: { block: 'profile', elem: 'radio' },
                 val: 0,
-                options: ['pep', 'picture', 'like'].map(function (v, i) {
+                options: ['Твиты', 'Картинки', 'Лайки'].map(function (v, i) {
                     var radios = {
                         val: i,
-                        icon: {
-                            block: 'icon',
-                            mods: {}
-                        }
+                        text: v
                     };
-
-                    radios.icon.mods[v] = true;
 
                     return radios;
                 })

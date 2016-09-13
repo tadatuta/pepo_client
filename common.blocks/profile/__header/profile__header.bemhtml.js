@@ -4,19 +4,16 @@ block('profile').elem('header')(
             return [
                 {
                     block: 'button',
-                    mix: { block: 'profile', elem: 'to-edit' },
-                    mods: { theme: 'simple', size: 'm', type: 'link' },
-                    url: '/profile-edit/',
+                    mods: { theme: 'simple' },
+                    mix: { block: 'profile', elem: 'edit' },
                     icon: {
-                        block: 'icon',
-                        mods: { profile: 'edit' }
+                        block: 'icon'
                     }
                 },
                 {
                     block: 'image',
                     mods: { type: 'avatar' },
-                    url: this.ctx.url,
-                    js: false
+                    url: this.ctx.url
                 },
                 {
                     block: 'about-user',

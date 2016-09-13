@@ -1,22 +1,27 @@
 block('tweet')(
     content()(
         function () {
-            var data = this.ctx, //{ block: 'tweet' и поля переданные из tweets_display_default.bemtree.js }
-                tweet_content = [
-                    {
-                        elem: 'left',
-                        content: {
-                            block: 'image',
-                            mods: { type: 'avatar' },
-                            url: data.avatar
-                        }
-                    },
-                    {
-                        elem: 'right',
-                        data: data
-                    }
-                ];
+            //здесь приходит data из блока tweets
 
-            return tweet_content;
+            return [
+                {
+                    elem: 'left',
+                    content: {
+                        block: 'image',
+                        mods: { type: 'avatar' },
+                        url: this.ctx.avatar
+                    }
+                },
+                {
+                    elem: 'right',
+                    about_user: {
+                        username: this.ctx.username,
+                        login: this.ctx.login,
+                        time: this.ctx.time,
+                        content: this.ctx.content,
+                        url: this.ctx.url
+                    }
+                }
+            ];
         }
     ));

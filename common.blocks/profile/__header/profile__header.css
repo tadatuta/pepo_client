@@ -1,8 +1,9 @@
 .profile__header {
     text-align: right;
+    padding: 10px 4px 0 4px;
 }
 
 .profile__header .about-user {
     text-align: center;
-    padding: 5px;
+    padding: 10px 0;
 }

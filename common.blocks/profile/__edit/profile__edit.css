@@ -1,0 +1,21 @@
+.profile__edit {
+    background-color: inherit;
+    border: none;
+    font-size: 25px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.profile__edit.button_pressed {
+    background: none;
+}
+
+.profile__edit .icon {
+    background-image: url('img/edit.svg');
+    line-height: 25px;
+}
+
+.profile__edit .button_pressed .icon {
+    background-image: url('img/edit.svg');
+}

@@ -34,26 +34,83 @@ app
     .use(morgan('combined'))
     .use(cookieParser())
     .use(bodyParser.urlencoded({ extended: true }))
-    //    .use(expressSession({
-    //        resave: true,
-    //        saveUninitialized: true,
-    //        secret: config.sessionSecret
-    //    }))
-    //    .use(passport.initialize())
-    //    .use(passport.session())
     .use(slashes());
 // TODO: csrf, gzip
 
-//passport.serializeUser(function(user, done) {
-//    done(null, JSON.stringify(user));
-//});
-
-//passport.deserializeUser(function(user, done) {
-//    done(null, JSON.parse(user));
-//});
-
 app.get('/ping/', function (req, res) {
     res.send('ok');
+});
+
+app.get('/get-last', function (req, res) {
+    var url = config.servers.api_server + '/api/user',
+        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (answer) {
+            if (response.statusCode != 404) {
+                render(req, res, null, {
+                    block: 'tweets',
+                    tweets: answer.tweets_last
+                })
+            }
+        }
+    })
+});
+
+app.get('/get-pics', function (req, res) {
+    var url = config.servers.api_server + '/api/user',
+        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (answer) {
+            if (response.statusCode != 404) {
+                render(req, res, null, {
+                    block: 'tweets',
+                    tweets: answer.tweets_pics
+                })
+            }
+        }
+    })
+});
+
+app.get('/get-likes', function (req, res) {
+    var url = config.servers.api_server + '/api/user',
+        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (answer) {
+            if (response.statusCode != 404) {
+                render(req, res, null, {
+                    block: 'tweets',
+                    tweets: answer.tweets_liked
+                })
+            }
+        }
+    })
 });
 
 app.get('/users/:login', function (req, res) {
@@ -166,12 +223,13 @@ app.get('/feed/', function (req, res) {
     }, function (error, response, answer) {
         answer = JSON.parse(answer);
 
+        console.log(answer)
         if (response.statusCode == 403) {
             res.redirect('/auth/');
         }
         else {
             if (answer) {
-                answer.usemap=true;
+                answer.usemap = true;
                 render(req, res, {
                     view: 'wall',
                     title: 'Wall Page',
@@ -302,43 +360,6 @@ app.get('/profile-edit/', function (req, res) {
     });
 });
 
-app.get('/profile/', function (req, res) {
-
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
-        url = config.servers.api_server + '/api/user/';
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer) {
-                answer.self = true;
-                render(req, res, {
-                    view: 'profile',
-                    title: 'Profile  Page',
-                    profile_data: answer
-                })
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
-});
-
 app.get('/compose/', function (req, res) {
     render(req, res, {
         view: 'compose',
@@ -381,6 +402,36 @@ app.get('/comment/:id', function (req, res) {
     });
 });
 
+
+app.get('/profile', function (req, res) {
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
+        url = config.servers.api_server + '/api/user/';
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (response.statusCode == 403) {
+            res.redirect('/auth/');
+        }
+        else {
+            if (answer) {
+                render(req, res, {
+                    view: 'profile',
+                    title: 'User profile',
+                    profile_data: answer,
+                    tweets_last: answer.tweets_last
+                })
+            }
+        }
+    });
+});
+
 app.get('/users-search/', function (req, res) {
     render(req, res, {
         view: 'users-search',
@@ -392,52 +443,7 @@ app.get('/single/', function (req, res) {
     render(req, res, {
         view: 'single',
         title: 'Single block',
-        single: req.query.single,
-        profile_data: {
-            displayName: 'smolnikovp',
-            firstName: 'Pavel',
-            lastName: 'Smolnikov',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla imperdiet ornare diam, ' +
-            'sit amet pharetra ante iaculis at. Integer sit amet nibh eleifend nisl laoreet congue. Aenean laoreet ',
-            avatar: 'https://pbs.twimg.com/profile_images/652908696721297410/xpBsSCDu.jpg',
-            followers: 1,
-            follows: 5,
-            tweets: [
-                {
-                    _id: '57cc17d6270e510a02bba8cd',
-                    author: '57c19d3dbb873d7c3b8cfaa1',
-                    content: 'dont blink',
-                    __v: 0,
-                    timestamp: '2016-08-01T12:16:40.308Z',
-                    like: false,
-                    retweet: false,
-                    extras: {
-                        url: 'http://yandex.ru',
-                        attachment: { url: 'http://yandex.ru' },
-                        likes: [ '57c19d3dbb873d7c3b8cfaa1' ],
-                        comments: [],
-                        retweets: [ '57c19d3dbb873d7c3b8cfaa1' ]
-                    }
-                },
-                {
-                    _id: '57cc17bb270e510a02bba8cc',
-                    author: '57c19d3dbb873d7c3b8cfaa1',
-                    content: 'THIS IS SPARTA',
-                    __v: 2,
-                    timestamp: '2016-09-03T12:16:40.308Z',
-                    like: true,
-                    retweet: true,
-                    extras: {
-                        url: 'http://yandex.ru',
-                        attachment: { url: 'http://yandex.ru', target: 'http://yandex.ru' },
-                        likes: [ '57c19d3dbb873d7c3b8cfaa1', '57c19d3dbb873d7c3b8cfaa2' ],
-                        comments: [],
-                        retweets: [ '57c19d3dbb873d7c3b8cfaa1' ]
-                    }
-                }
-            ],
-            self: true
-        }
+        single: req.query.single
     })
 });
 

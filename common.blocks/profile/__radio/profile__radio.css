@@ -1,32 +1,3 @@
-.profile__radio .radio{
-    display: inline-block;
-    width: 33.32%;
-    height: 50px;
-    font-size: 23px;
-    border-radius: 0;
-}
-
-.profile__radio .radio .button_theme_islands {
-    padding: 0;
-    border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-}
-
-.button_theme_islands.button_checked.button_hovered,
-.profile__radio .button_theme_islands.button_checked:before {
-    /*background: #fff709;*/
-}
-
-.profile__radio .icon_like {
-    background-image: url("img/like.svg");
-}
-
-.profile__radio .icon_pep {
-    background-image: url("img/pep.svg");
-}
-
-.profile__radio .icon_picture {
-    background-image: url("img/picture.svg");
+.profile__radio .button_togglable_radio {
+    width: 33%;
 }
