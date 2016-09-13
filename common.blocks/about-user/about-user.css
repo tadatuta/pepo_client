@@ -2,9 +2,14 @@
     display: block;
 }
 
+.about-user .text_username,
+.about-user .text_id {
+    font-size: 17px;
+}
+
 .about-user .text_about {
-    padding: 10px 5px;
-    font-size: smaller;
+    padding-top: 5px;
+    font-size: 12px;
 }
 
 @media (orientation: landscape) {

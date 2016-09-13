@@ -1,3 +1,3 @@
 ({
-    shouldDeps: [{block: 'page'}]
+    shouldDeps: ['page']
 });
