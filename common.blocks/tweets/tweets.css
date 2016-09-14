@@ -1,5 +1,6 @@
 .tweets {
     height: 100vh;
+    padding: 5px 4px 0 4px;
 }
 
 .tweets .text_about {

@@ -113,150 +113,9 @@ app.get('/get-likes', function (req, res) {
     })
 });
 
-app.get('/users/:login', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
-        url = config.servers.api_server + '/api/users/' + encodeURIComponent(req.params.login);
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-
-            if (answer) {
-                if (response.statusCode != 404) {
-                    render(req, res, {
-                        view: 'profile',
-                        title: 'Profile  Page',
-                        profile_data: answer
-                    })
-                } else {
-                    res.status(404);
-                    return render(req, res, { view: '404' });
-                }
-
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
-});
-
-app.get('/tweet/:id', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
-        url = config.servers.api_server + '/api/tweet/' + req.params.id;
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer) {
-                render(req, res, {
-                    view: 'tweet',
-                    title: 'Tweet  Page',
-                    tweet_data: answer
-                })
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
-});
-
-app.get('/', function (req, res) {
-    render(req, res, {
-        view: 'index',
-        title: 'Main page',
-        meta: {
-            description: 'Page description',
-            og: {
-                url: 'https://site.com',
-                siteName: 'Site name'
-            }
-        }
-    })
-});
-
-app.get('/map/', function (req, res) {
-    render(req, res, {
-        view: 'vmap',
-        title: 'My map'
-    })
-});
-
-app.get('/feed/', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-    var url = config.servers.api_server + '/api/user/feed';
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        console.log(answer)
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer) {
-                answer.usemap = true;
-                render(req, res, {
-                    view: 'wall',
-                    title: 'Wall Page',
-                    tweet_data: answer
-                })
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
-});
-
-app.get('/login/', function (req, res) {
-    render(req, res, {
-        view: 'login',
-        title: 'Login  Page'
-    })
-});
-
 app.get('/auth/', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-    var url = config.servers.api_server + '/api/user/';
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
+        url = config.servers.api_server + '/api/user/';
 
     request({
         url: url,
@@ -266,47 +125,15 @@ app.get('/auth/', function (req, res) {
         }
     }, function (error, response, answer) {
         answer = JSON.parse(answer);
+
         if (response.statusCode == 403) {
             render(req, res, {
                 view: 'auth',
                 title: 'Auth  Page'
             })
-        }
-        else {
+        } else {
             if (answer.notRegistered) {
                 res.redirect('/signup/');
-            }
-            else {
-                res.redirect('/feed/');
-            }
-
-        }
-    });
-
-});
-
-app.get('/signup/', function (req, res) {
-
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-    var url = config.servers.api_server + '/api/user/';
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer.notRegistered) {
-                render(req, res, {
-                    view: 'signup',
-                    title: 'Signup Page'
-                });
             }
             else {
                 res.redirect('/feed/');
@@ -321,43 +148,6 @@ app.get('/comment/', function (req, res) {
         view: 'comment',
         title: 'comment'
     })
-});
-
-app.get('/profile-edit/', function (req, res) {
-
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-    var url = config.servers.api_server + '/api/user/';
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer) {
-                answer.self = true;
-                render(req, res, {
-                    view: 'profile-edit',
-                    title: 'Edit Profile  Page',
-                    profile_data: answer
-                })
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
 });
 
 app.get('/compose/', function (req, res) {
@@ -402,6 +192,93 @@ app.get('/comment/:id', function (req, res) {
     });
 });
 
+app.get('/feed/', function (req, res) {
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+    var url = config.servers.api_server + '/api/user/feed';
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        console.log(answer)
+        if (response.statusCode == 403) {
+            res.redirect('/auth/');
+        }
+        else {
+            if (answer) {
+                answer.usemap = true;
+                render(req, res, {
+                    view: 'wall',
+                    title: 'Wall Page',
+                    tweet_data: answer
+                })
+            }
+            else {
+                render(req, res, {
+                    view: '500',
+                    title: ''
+                })
+            }
+
+        }
+    });
+});
+
+app.get('/map/', function (req, res) {
+    render(req, res, {
+        view: 'vmap',
+        title: 'My map'
+    })
+});
+
+app.get('/login/', function (req, res) {
+    render(req, res, {
+        view: 'login',
+        title: 'Login  Page'
+    })
+});
+
+app.get('/profile-edit/', function (req, res) {
+
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+    var url = config.servers.api_server + '/api/user/';
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (response.statusCode == 403) {
+            res.redirect('/auth/');
+        }
+        else {
+            if (answer) {
+                answer.self = true;
+                render(req, res, {
+                    view: 'profile-edit',
+                    title: 'Edit Profile  Page',
+                    profile_data: answer
+                })
+            }
+            else {
+                render(req, res, {
+                    view: '500',
+                    title: ''
+                })
+            }
+
+        }
+    });
+});
 
 app.get('/profile', function (req, res) {
     var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
@@ -427,6 +304,99 @@ app.get('/profile', function (req, res) {
                     profile_data: answer,
                     tweets_last: answer.tweets_last
                 })
+            }
+        }
+    });
+});
+
+app.get('/signup/', function (req, res) {
+
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+    var url = config.servers.api_server + '/api/user/';
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+        if (response.statusCode == 403) {
+            res.redirect('/auth/');
+        }
+        else {
+            if (answer.notRegistered) {
+                render(req, res, {
+                    view: 'signup',
+                    title: 'Signup Page'
+                });
+            }
+            else {
+                res.redirect('/feed/');
+            }
+        }
+    });
+
+});
+
+app.get('/tweet/:id', function (req, res) {
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
+        url = config.servers.api_server + '/api/tweet/' + req.params.id;
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (response.statusCode == 403) {
+            res.redirect('/auth/');
+        }
+        else {
+            if (answer) {
+                render(req, res, {
+                    view: 'tweet',
+                    title: 'Tweet  Page',
+                    tweet_data: answer
+                })
+            }
+        }
+    });
+});
+
+app.get('/users/:login', function (req, res) {
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
+        url = config.servers.api_server + '/api/users/' + encodeURIComponent(req.params.login);
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (response.statusCode == 403) {
+            res.redirect('/auth/');
+        }
+        else {
+
+            if (answer) {
+                if (response.statusCode != 404) {
+                    render(req, res, {
+                        view: 'profile',
+                        title: 'Profile  Page',
+                        profile_data: answer
+                    })
+                } else {
+                    res.status(404);
+                    return render(req, res, { view: '404' });
+                }
             }
         }
     });

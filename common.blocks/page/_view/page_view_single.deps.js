@@ -1,6 +1,6 @@
 ({
     shouldDeps: [
-        { block: 'tweets', mods: { display: 'default' } },
+        { block: 'tweets' },
         { block: 'tweet' }
     ]
 });

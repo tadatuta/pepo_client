@@ -23,7 +23,9 @@ block('tweets')(
                 login: '@' + users[v.author].displayName,
                 time: diff_time,
                 content: tweets[i].content,
-                url: tweets[i]._id
+                url: tweets[i]._id,
+                extras: tweets[i].extras,
+                id: tweets[i]._id
             };
         });
 

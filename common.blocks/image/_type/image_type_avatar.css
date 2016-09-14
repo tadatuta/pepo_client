@@ -1,15 +1,5 @@
 .image_type_avatar {
     border-radius: 50%;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
     display: block;
-    box-shadow: 0 0 4px #000;
-}
-
-@media (orientation: landscape) {
-    .image_type_avatar {
-        width: 65px;
-        height: 65px;
-    }
+    box-shadow: 0 0 1px #696969;
 }
