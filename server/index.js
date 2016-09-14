@@ -243,7 +243,7 @@ app.get('/login/', function (req, res) {
     })
 });
 
-app.get('/profile-edit/', function (req, res) {
+app.get('/profile-edit', function (req, res) {
 
     var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
     var url = config.servers.api_server + '/api/user/';
@@ -266,16 +266,14 @@ app.get('/profile-edit/', function (req, res) {
                 render(req, res, {
                     view: 'profile-edit',
                     title: 'Edit Profile  Page',
-                    profile_data: answer
+                    user_data: {
+                        firstName: answer.firstName,
+                        lastName: answer.lastName,
+                        description: answer.description,
+                        avatar: answer.avatar
+                    }
                 })
             }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
         }
     });
 });

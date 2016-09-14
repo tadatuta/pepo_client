@@ -1,0 +1,41 @@
+@import "../../../node_modules/dropzone/dist/dropzone.css";
+
+.profile-edit__dropzone.dropzone {
+    margin: 0 auto;
+    min-height: 25px;
+    padding: 0;
+    border: none;
+}
+
+.profile-edit__dropzone.dropzone,
+.profile-edit__dropzone.dropzone .dz-preview,
+.profile-edit__dropzone.dropzone .dz-preview .dz-image,
+.profile-edit__dropzone.dropzone.dz-started .dz-message,
+.profile-edit__dropzone.dropzone .dz-default .dz-message {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile-edit__dropzone.dropzone .dz-preview {
+    margin: 0;
+}
+
+.profile-edit__dropzone .dz-message {
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.profile-edit__dropzone.dropzone .dz-preview .dz-image {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-edit__dropzone.dropzone .dz-preview .dz-image,
+.profile-edit__dropzone.dropzone .dz-default .dz-message,
+.profile-edit__dropzone.dropzone.dz-started .dz-message {
+    border: 2px solid #ceced2;
+}

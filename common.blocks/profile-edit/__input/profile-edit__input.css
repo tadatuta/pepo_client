@@ -1,0 +1,8 @@
+.profile-edit__input,
+.profile-edit__input:before {
+    border-radius: 5px;
+}
+
+.profile-edit__input .input__control {
+    text-align: center;
+}
