@@ -1,4 +1,4 @@
-modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, BEMDOM, BEMHTML, $) {
+modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], function (provide, BEMDOM, BEMHTML, $, Tweets) {
 
     provide(BEMDOM.decl(this.name,
         {
@@ -7,42 +7,20 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                     var radio = this.findBlockInside('radio-group'),
                         optional = this.elem('optional');
 
-                    if (radio.getVal() == 0) {
-
-                    }
-
                     radio.bindTo('click', function () {
                         var val = radio.getVal();
 
                         switch (val) {
                             case '0':
-                                $.ajax({
-                                    url: window.config.frontend_server + '/get-last',
-                                    success: function (data) {
-                                        BEMDOM.update(optional,
-                                        BEMHTML.apply(data));
-                                    }
-                                });
+                                Tweets.getTweets(optional, 'last');
                                 break;
 
                             case '1' :
-                                $.ajax({
-                                    url: window.config.frontend_server + '/get-pics',
-                                    success: function (data) {
-                                        BEMDOM.update(optional,
-                                        BEMHTML.apply(data));
-                                    }
-                                });
+                                Tweets.getTweets(optional, 'pics');
                                 break;
 
                             case '2' :
-                                $.ajax({
-                                    url: window.config.frontend_server + '/get-likes',
-                                    success: function (data) {
-                                        BEMDOM.update(optional,
-                                        BEMHTML.apply(data));
-                                    }
-                                });
+                                Tweets.getTweets(optional, 'likes');
                                 break;
                         }
                     });

@@ -1,0 +1,10 @@
+.tweet__content {
+    box-sizing: border-box;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.tweet__content .link_plaintext {
+    text-indent: 1em;
+    padding: 0 3px;
+}

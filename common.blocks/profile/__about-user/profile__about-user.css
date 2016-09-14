@@ -1,0 +1,9 @@
+.profile__about-user .text_username,
+.profile__about-user .text_id {
+    font-size: 17px;
+}
+
+.profile__about-user .text_about {
+    padding-top: 5px;
+    font-size: 12px;
+}
