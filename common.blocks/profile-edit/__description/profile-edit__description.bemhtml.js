@@ -8,13 +8,8 @@ block('profile-edit').elem('description')(
             {
                 block: 'textarea',
                 mods: { theme: 'islands', size: 'm', width: 'available' },
+                id: 'description',
                 placeholder: 'Расскажите о себе'
-            },
-            {
-                block: 'button',
-                mods: { theme: 'islands', size: 'l' },
-                mix: { block: 'profile-edit', elem: 'save' },
-                text: 'Сохранить'
             }
         ];
     })

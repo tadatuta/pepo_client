@@ -18,20 +18,17 @@ block('profile-edit')(
                 }
             ];
 
-        var username = ['Введите имя', 'Введите фамилию'].map(function (v) {
+        var username = ['Введите имя', 'Введите фамилию'].map(function (v, i) {
             var input_value,
-                name;
+                curr_index = i + 1,
+                id;
 
             if (v == 'Введите имя') {
                 input_value = user_data.firstName;
-                name = 'firstName';
+                id = 'firstName';
             } else {
                 input_value = user_data.lastName;
-                name = 'lastName';
-            }
-
-            if (!user_data.firstName || !user_data.lastName) {
-                input_value = '';
+                id = 'lastName';
             }
 
             return {
@@ -39,10 +36,10 @@ block('profile-edit')(
                 content: [
                     {
                         block: 'input',
-                        mods: { theme: 'islands', size: 'm', width: 'available', 'has-clear': true },
+                        mods: { theme: 'islands', size: 'm', width: 'available', 'has-clear': true, field: id },
                         mix: { block: 'profile-edit', elem: 'input' },
+                        tabIndex: curr_index,
                         val: input_value,
-                        name: name,
                         placeholder: v
                     }
                 ]
@@ -52,6 +49,8 @@ block('profile-edit')(
         content.push(username, {
             elem: 'description',
             description: user_data.description
+        }, {
+            elem: 'buttons'
         });
 
         return content;

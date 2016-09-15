@@ -39,3 +39,11 @@
 .profile-edit__dropzone.dropzone.dz-started .dz-message {
     border: 2px solid #ceced2;
 }
+
+.profile-edit__dropzone.dropzone .dz-details {
+    display: none;
+}
+
+.profile-edit__dropzone.dropzone .dz-preview:hover .dz-image img {
+    filter: none;
+}

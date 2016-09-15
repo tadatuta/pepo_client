@@ -1,9 +1,10 @@
 .profile-edit__description .text{
-    text-indent: 1em;
+    text-indent: 0.5em;
     display: block;
     font-size: 17px;
 }
 
 .profile-edit__description .textarea {
     margin: 5px 0;
+    min-height: 80px;
 }

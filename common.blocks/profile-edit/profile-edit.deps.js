@@ -1,6 +1,6 @@
 ({
     shouldDeps: [
-        { elem: ['header', 'username', 'lastName', 'description', 'avatar', 'dropzone', 'input', 'save']},
+        { elem: ['avatar', 'back', 'buttons', 'description', 'dropzone', 'header', 'input', 'save', 'username']},
         { block: 'dropzone' }
     ]
 });

@@ -7,7 +7,7 @@ block('profile')(
                     {
                         elem: 'header',
                         url: profile_data.avatar,
-                        username: profile_data.lastName + ' ' + profile_data.firstName,
+                        username: profile_data.firstName + ' ' + profile_data.lastName,
                         login: profile_data.displayName,
                         description: profile_data.description
                     },
