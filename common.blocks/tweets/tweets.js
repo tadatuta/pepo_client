@@ -6,7 +6,12 @@ modules.define('tweets', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide,
                 js: function () {
                     var that = this,
                         last_time = this.params.tweet_last_time,
-                        body = this.findBlockOutside('body');
+                        body = this.findBlockOutside('body'),
+                        nothing = {
+                            block: 'text',
+                            mods: { nothing: true },
+                            content: 'На данный момент больше ничего нет'
+                        };
 
                     $(function () {
                         var inProgress = false;
@@ -19,16 +24,16 @@ modules.define('tweets', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide,
                                 $.ajax({
                                     url: window.config.frontend_server + '/get-feed/' + last_time,
                                     success: function (data) {
-                                        BEMDOM.append(body.domElem,
-                                            BEMHTML.apply(data));
+                                        if (!body) {
+                                            BEMDOM.append(that.domElem,
+                                                BEMHTML.apply(nothing));
+                                        } else {
+                                            BEMDOM.append(body.domElem, data);
+                                        }
                                     }
                                 }).fail(function () {
                                     BEMDOM.append(that.domElem,
-                                        BEMHTML.apply({
-                                            block: 'text',
-                                            mods: { nothing: true },
-                                            content: 'На данный момент больше ничего нет'
-                                        }));
+                                        BEMHTML.apply(nothing));
                                 });
                             }
                         });
