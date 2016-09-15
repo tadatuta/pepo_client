@@ -1,0 +1,20 @@
+.bottom-menu__button {
+    width: 25%;
+    min-width: 50px;
+    height: 44px;
+}
+
+.bottom-menu__button.button_theme_islands.button_size_m {
+    line-height: 18px;
+}
+
+.bottom-menu__button.button_theme_islands.button_size_m .button__text {
+    margin: 0;
+}
+
+.bottom-menu__button.button_theme_islands.button_size_m .icon{
+    display: block;
+    margin: 0 auto;
+    height: 22px;
+    width: 22px;
+}

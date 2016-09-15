@@ -1,8 +1,3 @@
-.page_view_wall .top-menu,
-.page_view_wall .bottom-menu {
-    min-width: 200px;
-}
-
-.page_view_wall {
-    margin: 0 0 60px 0;
+.page.page_view_wall {
+    padding-bottom: 44px;
 }
