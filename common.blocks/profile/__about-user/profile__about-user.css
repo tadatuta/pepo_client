@@ -5,5 +5,7 @@
 
 .profile__about-user .text_about {
     padding-top: 5px;
+    word-wrap: break-word;
+    word-break: break-all;
     font-size: 12px;
 }

@@ -1,27 +1,6 @@
 ({
     shouldDeps: [
-        {
-            block: 'input',
-            mods: {
-                theme: 'islands',
-                size: 'm',
-                width: 'available'
-            }
-        },
-        {
-            block: 'textarea',
-            mods: {
-                theme: 'islands',
-                size: 'm',
-                width: 'available'
-            }
-        },
-        {
-            block: 'button'
-        },
-        {
-            block: 'dropzone',
-            tech: 'bemhtml'
-        }
+        { elem: ['avatar', 'back', 'buttons', 'description', 'dropzone', 'header', 'input', 'save', 'username']},
+        { block: 'dropzone' }
     ]
 });

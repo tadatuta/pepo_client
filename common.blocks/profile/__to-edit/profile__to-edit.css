@@ -1,4 +1,4 @@
-.profile__edit {
+.profile__to-edit {
     background-color: inherit;
     border: none;
     font-size: 25px;
@@ -7,15 +7,16 @@
     right: 4px;
 }
 
-.profile__edit.button_pressed {
+.profile__to-edit.button_pressed {
     background: none;
+    box-shadow: none;
 }
 
-.profile__edit .icon {
+.profile__to-edit .icon {
     background-image: url('img/edit.svg');
     line-height: 25px;
 }
 
-.profile__edit .button_pressed .icon {
+.profile__to-edit .button_pressed .icon {
     background-image: url('img/edit.svg');
 }

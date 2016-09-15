@@ -1,0 +1,12 @@
+.profile-edit__input,
+.profile-edit__input:before {
+    border-radius: 5px;
+}
+
+.profile-edit__input .input__control {
+    text-align: center;
+}
+
+.profile-edit__input.input_theme_islands.input_size_m.input_has-clear .input__control {
+    padding: 0;
+}

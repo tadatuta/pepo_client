@@ -1,7 +1,6 @@
 modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], function (provide, BEMDOM, BEMHTML, $, Tweets) {
 
-    provide(BEMDOM.decl(this.name,
-        {
+    provide(BEMDOM.decl(this.name, {
             onSetMod: {
                 js: function () {
                     var radio = this.findBlockInside('radio-group'),
@@ -27,6 +26,5 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], functio
                 }
             }
         },
-        {}
-    ));
+        {}));
 });

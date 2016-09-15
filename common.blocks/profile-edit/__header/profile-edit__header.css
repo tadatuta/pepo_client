@@ -1,0 +1,9 @@
+.profile-edit__header {
+    text-align: center;
+    font-size: 17px;
+    color: #000;
+    border-bottom: 1px solid #ceced2;
+    height: 44px;
+    padding: 0 4px;
+    line-height: 44px;
+}

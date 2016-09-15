@@ -1,5 +1,5 @@
 ({
     shouldDeps: [
-        {block: 'profile-edit'}
+        { block: 'profile-edit' }
     ]
 });

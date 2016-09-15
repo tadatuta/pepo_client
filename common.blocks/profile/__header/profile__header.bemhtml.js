@@ -4,8 +4,9 @@ block('profile').elem('header')(
             return [
                 {
                     block: 'button',
-                    mods: { theme: 'simple' },
-                    mix: { block: 'profile', elem: 'edit' },
+                    mods: { theme: 'simple', type: 'link' },
+                    mix: { block: 'profile', elem: 'to-edit' },
+                    url: '/profile-edit',
                     icon: {
                         block: 'icon'
                     }
