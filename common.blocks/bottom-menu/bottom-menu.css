@@ -1,22 +1,20 @@
 .bottom-menu{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: #fff;
     box-shadow: 0 -7px 6px -6px rgba(204, 204, 204, 1);
 }
 
-.bottom-menu .radio-group_theme_islands .button{
-    width: 25%;
-    min-width: 50px;
+.bottom-menu .icon_home {
+    background-image: url('img/home.svg');
 }
 
-.bottom-menu .radio-group_theme_islands .button__text{
-    margin: 0;
+.bottom-menu .icon_account {
+    background-image: url('img/account.svg');
 }
 
-.bottom-menu .radio-group_theme_islands .button .icon{
-    display:  block;
-    margin: 0 auto;
+.bottom-menu .icon_search {
+    background-image: url('img/search-button.svg');
+}
+
+.bottom-menu .icon_tweet {
+    background-image: url('img/plus.svg');
 }

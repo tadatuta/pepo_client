@@ -89,6 +89,32 @@ app.get('/get-pics', function (req, res) {
     })
 });
 
+app.get('/get-feed/:last_time', function (req, res) {
+    var url = config.servers.api_server + '/api/user/feed/history/?offset=' + encodeURIComponent(req.params.last_time),
+        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+
+    request({
+        url: url,
+        headers: {
+            Cookie: cookie,
+            json: true
+        }
+    }, function (error, response, answer) {
+        answer = JSON.parse(answer);
+
+        if (answer) {
+            if (response.statusCode != 404) {
+                render(req, res, {
+                    limit: 10
+                }, {
+                    block: 'tweets',
+                    tweets: answer
+                })
+            }
+        }
+    })
+});
+
 app.get('/get-likes', function (req, res) {
     var url = config.servers.api_server + '/api/user',
         cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
@@ -193,8 +219,8 @@ app.get('/comment/:id', function (req, res) {
 });
 
 app.get('/feed/', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-    var url = config.servers.api_server + '/api/user/feed';
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
+        url = config.servers.api_server + '/api/user/feed';
 
     request({
         url: url,
@@ -205,7 +231,6 @@ app.get('/feed/', function (req, res) {
     }, function (error, response, answer) {
         answer = JSON.parse(answer);
 
-        console.log(answer)
         if (response.statusCode == 403) {
             res.redirect('/auth/');
         }
@@ -215,16 +240,9 @@ app.get('/feed/', function (req, res) {
                 render(req, res, {
                     view: 'wall',
                     title: 'Wall Page',
-                    tweet_data: answer
+                    tweets: answer
                 })
             }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
         }
     });
 });
