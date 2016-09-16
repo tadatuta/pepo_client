@@ -1,4 +1,4 @@
-block('profile-edit').elem('buttons')(
+block('profile-edit').elem('footer')(
     content()(function () {
         var btns = ['save', 'back'].map(function (v) {
             var text;
@@ -7,7 +7,7 @@ block('profile-edit').elem('buttons')(
 
             return {
                 block: 'button',
-                mods: { theme: 'islands', size: 'l' },
+                mods: { theme: 'islands', size: 'l', type: 'link' },
                 mix: { block: 'profile-edit', elem: v },
                 text: text
             };

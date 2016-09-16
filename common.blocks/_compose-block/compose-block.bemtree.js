@@ -1,11 +1,10 @@
 block('compose-block').content()(function () {
     return [
         {
-            block: 'pepo-textarea'
+            elem: 'body'
         },
         {
-            block: 'compose-menu'
+            elem: 'footer'
         }
-
     ];
 });

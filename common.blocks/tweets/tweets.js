@@ -13,31 +13,30 @@ modules.define('tweets', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide,
                             content: 'На данный момент больше ничего нет'
                         };
 
-                    $(function () {
-                        var inProgress = false;
+                    var inProgress = false;
+                    this.bindToWin('scroll', function () {
 
-                        $(window).scroll(function () {
+                        if ($(window).scrollTop() + $(window).height() >= $(document).height() + 50 && !inProgress) {
+                            inProgress = true;
 
-                            if ($(window).scrollTop() + $(window).height() >= $(document).height() && !inProgress) {
-                                inProgress = true;
-
-                                $.ajax({
-                                    url: window.config.frontend_server + '/get-feed/' + last_time,
-                                    success: function (data) {
-                                        if (!body) {
-                                            BEMDOM.append(that.domElem,
-                                                BEMHTML.apply(nothing));
-                                        } else {
-                                            BEMDOM.append(body.domElem, data);
-                                        }
+                            $.ajax({
+                                url: window.config.frontend_server + '/get-feed/' + last_time,
+                                success: function (data) {
+                                    if (!body) {
+                                        BEMDOM.append(that.domElem,
+                                            BEMHTML.apply(nothing));
+                                    } else {
+                                        BEMDOM.append(body.domElem, data);
                                     }
-                                }).fail(function () {
-                                    BEMDOM.append(that.domElem,
-                                        BEMHTML.apply(nothing));
-                                });
-                            }
-                        });
+                                }
+                            }).fail(function () {
+                                BEMDOM.append(that.domElem,
+                                    BEMHTML.apply(nothing));
+                            });
+                        }
                     });
+
+                    this.inbindFrom('scroll');
                 }
             }
         },
