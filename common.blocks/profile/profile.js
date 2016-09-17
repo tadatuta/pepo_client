@@ -7,21 +7,10 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], functio
                         optional = this.elem('optional');
 
                     radio.bindTo('click', function () {
-                        var val = radio.getVal();
+                        var buttons = ['last', 'pics', 'likes'],
+                            val = buttons[radio.getVal()];
 
-                        switch (val) {
-                            case '0':
-                                Tweets.getTweets(optional, 'last');
-                                break;
-
-                            case '1' :
-                                Tweets.getTweets(optional, 'pics');
-                                break;
-
-                            case '2' :
-                                Tweets.getTweets(optional, 'likes');
-                                break;
-                        }
+                        Tweets.getTweets(optional, val);
                     });
                 }
             }

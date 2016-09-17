@@ -18,6 +18,7 @@ var fs = require('fs'),
     config = require('./config'),
     staticFolder = config.staticFolder,
 
+    getTweets = require('./get-tweets'),
     Render = require('./render'),
     render = Render.render,
     dropCache = Render.dropCache,
@@ -42,51 +43,15 @@ app.get('/ping/', function (req, res) {
 });
 
 app.get('/get-last', function (req, res) {
-    var url = config.servers.api_server + '/api/user',
-        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (answer) {
-            if (response.statusCode != 404) {
-                render(req, res, null, {
-                    block: 'tweets',
-                    tweets: answer.tweets_last
-                })
-            }
-        }
-    })
+    getTweets(req, res, 'tweets_last');
 });
 
 app.get('/get-pics', function (req, res) {
-    var url = config.servers.api_server + '/api/user',
-        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+    getTweets(req, res, 'tweets_pics');
+});
 
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (answer) {
-            if (response.statusCode != 404) {
-                render(req, res, null, {
-                    block: 'tweets',
-                    tweets: answer.tweets_pics
-                })
-            }
-        }
-    })
+app.get('/get-likes', function (req, res) {
+    getTweets(req, res, 'tweets_liked');
 });
 
 app.get('/get-feed/:last_time', function (req, res) {
@@ -107,30 +72,6 @@ app.get('/get-feed/:last_time', function (req, res) {
                 render(req, res, null, {
                     block: 'tweets',
                     tweets: answer
-                })
-            }
-        }
-    })
-});
-
-app.get('/get-likes', function (req, res) {
-    var url = config.servers.api_server + '/api/user',
-        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (answer) {
-            if (response.statusCode != 404) {
-                render(req, res, null, {
-                    block: 'tweets',
-                    tweets: answer.tweets_liked
                 })
             }
         }
