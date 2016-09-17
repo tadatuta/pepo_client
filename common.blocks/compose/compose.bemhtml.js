@@ -1,0 +1,3 @@
+block('compose')(
+    js()(true)
+);
