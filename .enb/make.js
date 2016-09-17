@@ -45,7 +45,13 @@ module.exports = function (config) {
             }],
 
             // bemtree
-            [techs.bemtree, { sourceSuffixes: ['bemtree', 'bemtree.js'] }],
+            [techs.bemtree, {
+                sourceSuffixes: ['bemtree', 'bemtree.js'],
+                requires: {
+                    moment: { commonJS: 'moment' },
+                    momentRu: { commonJS: 'moment/locale/ru' }
+                }
+            }],
 
             // js
             [techs.browserJs, { includeYM: true }],

@@ -1,8 +1,6 @@
-var moment = require('moment');
-moment.locale('ru');
-
 block('tweets')(
     content()(function () {
+        var moment = this.require('moment');
 
         if (this.ctx.tweets === undefined) {
             return {
