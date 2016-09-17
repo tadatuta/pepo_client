@@ -1,6 +1,6 @@
 ({
     shouldDeps: [
-        { block: 'tweets' },
+        { block: 'tweet-list' },
         { block: 'bottom-menu' },
         { block: 'footer' }
     ]

@@ -4,7 +4,7 @@ block('page').mod('view', 'wall')(
             {
                 block: 'body',
                 content: {
-                    block: 'tweets',
+                    block: 'tweet-list',
                     tweets: this.data.tweets
                 }
             },

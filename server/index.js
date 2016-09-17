@@ -70,7 +70,7 @@ app.get('/get-feed/:last_time', function (req, res) {
         if (answer) {
             if (response.statusCode != 404) {
                 render(req, res, null, {
-                    block: 'tweets',
+                    block: 'tweet-list',
                     tweets: answer
                 })
             }

@@ -19,7 +19,7 @@ module.exports = function (req, res, cell) {
         if (answer) {
             if (response.statusCode != 404) {
                 render(req, res, null, {
-                    block: 'tweets',
+                    block: 'tweet-list',
                     tweets: answer[cell]
                 })
             }

@@ -1,4 +1,4 @@
-modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], function (provide, BEMDOM, BEMHTML, $, Tweets) {
+modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweet-list'], function (provide, BEMDOM, BEMHTML, $, Tweet_list) {
 
     provide(BEMDOM.decl(this.name, {
             onSetMod: {
@@ -10,7 +10,7 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], functio
                         var buttons = ['last', 'pics', 'likes'],
                             val = buttons[radio.getVal()];
 
-                        Tweets.getTweets(optional, val);
+                        Tweet_list.getTweets(optional, val);
                     });
                 }
             }

@@ -19,7 +19,7 @@ block('profile')(
             (curr_ctx.tweets_last) ? content.push({
                 elem: 'optional',
                 content: {
-                    block: 'tweets',
+                    block: 'tweet-list',
                     tweets: curr_ctx.tweets_last
                 }
             }) : content.push({

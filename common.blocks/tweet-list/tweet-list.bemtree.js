@@ -1,7 +1,7 @@
 var moment = require('moment');
 moment.locale('ru');
 
-block('tweets')(
+block('tweet-list')(
     content()(function () {
 
         if (this.ctx.tweets === undefined) {

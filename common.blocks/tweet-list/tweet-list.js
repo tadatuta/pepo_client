@@ -1,4 +1,4 @@
-modules.define('tweets', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, BEMDOM, BEMHTML, $) {
+modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, BEMDOM, BEMHTML, $) {
 
     provide(BEMDOM.decl(this.name,
         {
