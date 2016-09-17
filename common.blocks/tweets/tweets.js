@@ -36,7 +36,7 @@ modules.define('tweets', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide,
                         }
                     });
 
-                    this.inbindFrom('scroll');
+                    this.unbindFrom('scroll');
                 }
             }
         },

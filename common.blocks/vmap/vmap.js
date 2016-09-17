@@ -26,7 +26,7 @@ modules.define('vmap', ['i-bem__dom', 'jquery', 'vmap-loader'], function (provid
         checkMapsApi: function () {
             if (!window.ymaps) {
                 var self = this;
-                $.when(this.findBlockOutside('vmap-loader').ymapsDeferred).then(function () {
+                $.when(this.findBlockOn('vmap-loader').ymapsDeferred).then(function () {
                     self.onAPILoaded();
                 });
             } else {

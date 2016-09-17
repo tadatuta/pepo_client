@@ -8,6 +8,16 @@ block('compose')(
                 elem: 'controls'
             },
             {
+                elem: 'dropzone',
+                content: {
+                    block: 'dropzone',
+                    js: { url: '/api/user/image' }
+                }
+            },
+            {
+                elem: 'url'
+            },
+            {
                 elem: 'footer'
             }
         ];
