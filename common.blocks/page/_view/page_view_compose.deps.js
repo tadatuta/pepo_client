@@ -1,5 +1,5 @@
 ({
     shouldDeps: [
-        { block: 'compose' }
+        { block: 'compose', mods: ['dz'] }
     ]
 });

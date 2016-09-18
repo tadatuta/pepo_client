@@ -16,9 +16,10 @@ modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (prov
                     var inProgress = false;
                     this.bindToWin('scroll', function () {
 
+                        this.unbindFrom('scroll');
                         if ($(window).scrollTop() + $(window).height() >= $(document).height() + 50 && !inProgress) {
-                            inProgress = true;
 
+                            inProgress = true;
                             $.ajax({
                                 url: window.config.frontend_server + '/get-feed/' + last_time,
                                 success: function (data) {
@@ -35,8 +36,6 @@ modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (prov
                             });
                         }
                     });
-
-                    this.unbindFrom('scroll');
                 }
             }
         },

@@ -23,6 +23,11 @@ block('tweet').elem('content')(
                         block: 'image',
                         mix: { block: 'tweet', elem: 'image' },
                         url: extras.image
+                    } : '',
+                    extras.attachment ? {
+                        block: 'image',
+                        mix: { block: 'tweet', elem: 'image' },
+                        url: extras.attachment.image
                     } : ''
                 );
             }

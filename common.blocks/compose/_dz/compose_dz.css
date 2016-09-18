@@ -1,0 +1,4 @@
+.compose_dz .dropzone {
+    opacity: 0;
+    pointer-events: none;
+}

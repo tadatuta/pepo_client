@@ -4,7 +4,8 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
         {
             onSetMod: {
                 js: function () {
-                    var avatar;
+                    var avatar,
+                        that = this;
 
                     this.findBlockOutside('page').on('upload_success', function (event, data) {
                         avatar = data.image;
@@ -14,46 +15,44 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                         this.postTweet(avatar);
                     });
 
-                    var that = this,
-                        btns = this.findBlocksInside('button');
-
-                    btns.forEach(function (v, i) {
-                        switch (btns[i].getVal()) {
-                            case '0':
-                                btns[i].bindTo('click', function () {
-                                    that.elem('image').setElemMod('visible', true);
-                                });
-                                break;
-
-                            case '1':
-                                btns[i].bindTo('click', function () {
-                                    console.log(1);
-                                });
-                                break;
-
-                            case '2':
-                                btns[i].bindTo('click', function () {
-                                    console.log(2);
-                                });
-                                break;
-                        }
+                    this.bindTo('add-image', 'click', function () {
+                        that.toggleMod('dz');
                     });
+
                 }
             },
 
             postTweet: function (avatar) {
-                var that = this;
+                var url,
+                    that = this,
+                    textarea_val = this.findBlockInside('textarea').getVal(),
+                    parse_url = textarea_val.toLowerCase().match(/(https?:\/\/|www)[^\n ,]+/g);
+
+                if (parse_url) {
+                    url = parse_url[0];
+                    textarea_val = textarea_val.replace(/(https?:\/\/|www)[^\n ,]+/g, '');
+
+                    //если ссылок больше одной, то у пользователя нет выхода - она будет удалена
+                    if (parse_url.length > 1) {
+                        textarea_val = textarea_val.replace(/(https?:\/\/|www)[^\n ,]+/g, '');
+                    }
+                }
 
                 $.ajax({
                     url: window.config.api_server + '/api/user/feed',
                     method: 'POST',
                     data: {
-                        content: this.findBlockInside('textarea').getVal(),
-                        image: avatar
+                        content: textarea_val,
+                        image: avatar,
+                        url: url,
+                        extras: {
+                            attachment: 'http://assets.pokemon.com/assets/cms2/img/misc/_tiles/privacy-policy-change-169.jpg'
+                        }
                     },
                     dataType: 'json'
-                }).done(function () {
-                    document.location.href = '/feed';
+                }).done(function (data) {
+                    console.log(data);
+                    //document.location.href = '/feed';
                     that.unbindFrom('save', 'click');
                 });
             }

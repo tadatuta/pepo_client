@@ -1,7 +1,8 @@
 block('page').mod('view', 'compose')(
     content()(function () {
         return {
-            block: 'compose'
+            block: 'compose',
+            mods: { dz: true }
         };
     })
 );
