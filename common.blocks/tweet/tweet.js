@@ -6,7 +6,6 @@ modules.define('tweet', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, 
                 return $.ajax({
                     url: window.config.api_server + '/api/tweet/' + this.params.id + '/' + url,
                     type: method,
-                    data: {},
                     dataType: 'json',
                     context: ctx
                 });

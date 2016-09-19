@@ -3,8 +3,8 @@
         shouldDeps: [
             {
                 mods: {
-                    view: ['404', '500', 'wall', 'login', 'auth', 'signup', 'compose', 'profile',
-                        'image-upload', 'users-search', 'profile-edit', 'tweet', 'vmap', 'single']
+                    view: ['404', '500', 'feed', 'login', 'auth', 'signup', 'compose', 'profile',
+                        'users-search', 'profile-edit', 'single']
                 }
             }
         ]

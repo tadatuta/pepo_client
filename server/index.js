@@ -108,53 +108,11 @@ app.get('/auth/', function (req, res) {
 
 });
 
-app.get('/comment/', function (req, res) {
-    render(req, res, {
-        view: 'comment',
-        title: 'comment'
-    })
-});
-
 app.get('/compose/', function (req, res) {
     render(req, res, {
         view: 'compose',
         title: 'Compose new tweet message'
     })
-});
-
-app.get('/comment/:id', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
-        url = config.servers.api_server + '/api/tweet/' + req.params.id;
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer) {
-                render(req, res, {
-                    view: 'compose',
-                    title: 'Reply to tweet message',
-                    tweet_data: answer
-                })
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
 });
 
 app.get('/feed/', function (req, res) {
@@ -177,20 +135,13 @@ app.get('/feed/', function (req, res) {
             if (answer) {
                 answer.usemap = true;
                 render(req, res, {
-                    view: 'wall',
+                    view: 'feed',
                     title: 'Wall Page',
                     tweets: answer
                 })
             }
         }
     });
-});
-
-app.get('/map/', function (req, res) {
-    render(req, res, {
-        view: 'vmap',
-        title: 'My map'
-    })
 });
 
 app.get('/login/', function (req, res) {
@@ -369,13 +320,6 @@ app.get('/single/', function (req, res) {
         view: 'single',
         title: 'Single block',
         single: req.query.single
-    })
-});
-
-app.get('/image-upload/', function (req, res) {
-    render(req, res, {
-        view: 'image-upload',
-        title: 'Image upload'
     })
 });
 

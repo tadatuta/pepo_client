@@ -1,0 +1,9 @@
+.tweet__url {
+    text-indent: 1em;
+    display: block;
+}
+
+.tweet__url,
+.tweet__url:active {
+    color: #007aff;
+}

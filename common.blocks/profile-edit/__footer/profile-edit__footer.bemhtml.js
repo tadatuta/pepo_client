@@ -7,7 +7,7 @@ block('profile-edit').elem('footer')(
 
             return {
                 block: 'button',
-                mods: { theme: 'islands', size: 'l', type: 'link' },
+                mods: { theme: 'islands', size: 'l', type: 'link', back: true },
                 mix: { block: 'profile-edit', elem: v },
                 text: text
             };

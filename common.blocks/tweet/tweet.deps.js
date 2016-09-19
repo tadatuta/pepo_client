@@ -1,7 +1,7 @@
 ([
     {
         shouldDeps: [
-            { elem: ['header', 'controls', 'about-user', 'avatar', 'content', 'action', 'icon', 'image'] },
+            { elem: ['about-user', 'action', 'avatar', 'controls', 'content', 'icon', 'image', 'header', 'url'] },
             { block: 'button' }
         ]
     }

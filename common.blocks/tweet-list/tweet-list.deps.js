@@ -1,6 +1,6 @@
 ({
     shouldDeps: [
         { block: 'tweet' },
-        { block: 'link', mods: { theme: 'islands', nothing: true } }
+        { block: 'text', mods: { nothing: true } }
     ]
 });

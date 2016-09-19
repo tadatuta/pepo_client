@@ -7,3 +7,7 @@
 .tweet__content .link_plaintext {
     text-indent: 1em;
 }
+
+.tweet__content .link_plaintext:first-letter {
+    text-transform: uppercase;
+}

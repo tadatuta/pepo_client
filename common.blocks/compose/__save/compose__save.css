@@ -1,0 +1,3 @@
+.compose__save.button_disabled {
+    pointer-events: none;
+}

@@ -15,9 +15,6 @@ block('compose')(
                 }
             },
             {
-                elem: 'url'
-            },
-            {
                 elem: 'footer'
             }
         ];

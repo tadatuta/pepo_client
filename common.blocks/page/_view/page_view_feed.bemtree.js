@@ -1,4 +1,4 @@
-block('page').mod('view', 'wall')(
+block('page').mod('view', 'feed')(
     content()(function () {
         return [
             {

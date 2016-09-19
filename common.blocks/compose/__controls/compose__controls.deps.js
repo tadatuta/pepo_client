@@ -1,6 +1,6 @@
 ({
     shouldDeps: [
         { block: 'control-group' },
-        { block: 'button', mods: { theme: 'islands' } }
+        { block: 'button', mods: { theme: 'islands', disabled: true } }
     ]
 });

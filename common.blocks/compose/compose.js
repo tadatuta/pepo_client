@@ -4,37 +4,48 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
         {
             onSetMod: {
                 js: function () {
-                    var avatar,
-                        that = this;
+                    var image_upload,
+                        that = this,
+                        save_btn = this.findBlockInside('save', 'button'),
+                        textarea = this.findBlockInside('textarea');
+
+                    save_btn.setMod('disabled', true);
 
                     this.findBlockOutside('page').on('upload_success', function (event, data) {
-                        avatar = data.image;
+                        image_upload = data.image;
+                        save_btn.setMod('disabled', false);
                     }, this);
 
                     this.bindTo('save', 'click', function () {
-                        this.postTweet(avatar);
+                        this.postTweet(image_upload, textarea);
                     });
 
                     this.bindTo('add-image', 'click', function () {
                         that.toggleMod('dz');
                     });
 
+                    textarea.on('change', function () {
+                        var textarea_val = textarea.getVal();
+
+                        (!textarea_val || textarea_val.length > 140) ? save_btn.setMod('disabled', true) : save_btn.setMod('disabled', false);
+                    }, this);
                 }
             },
 
-            postTweet: function (avatar) {
+            postTweet: function (image_upload, textarea) {
                 var url,
                     that = this,
-                    textarea_val = this.findBlockInside('textarea').getVal(),
-                    parse_url = textarea_val.toLowerCase().match(/(https?:\/\/|www)[^\n ,]+/g);
+                    re = /(https?:\/\/|www)[^\n ,]+/g,
+                    textarea_val = textarea.getVal(),
+                    parse_url = textarea_val.toLowerCase().match(re);
 
                 if (parse_url) {
                     url = parse_url[0];
-                    textarea_val = textarea_val.replace(/(https?:\/\/|www)[^\n ,]+/g, '');
+                    textarea_val = textarea_val.toLowerCase().replace(re, '');
 
                     //если ссылок больше одной, то у пользователя нет выхода - она будет удалена
                     if (parse_url.length > 1) {
-                        textarea_val = textarea_val.replace(/(https?:\/\/|www)[^\n ,]+/g, '');
+                        textarea_val = textarea_val.toLowerCase().replace(re, '');
                     }
                 }
 
@@ -43,16 +54,12 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                     method: 'POST',
                     data: {
                         content: textarea_val,
-                        image: avatar,
-                        url: url,
-                        extras: {
-                            attachment: 'http://assets.pokemon.com/assets/cms2/img/misc/_tiles/privacy-policy-change-169.jpg'
-                        }
+                        image: image_upload,
+                        url: url
                     },
                     dataType: 'json'
-                }).done(function (data) {
-                    console.log(data);
-                    //document.location.href = '/feed';
+                }).done(function () {
+                    document.location.href = '/feed';
                     that.unbindFrom('save', 'click');
                 });
             }

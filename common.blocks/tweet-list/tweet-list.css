@@ -10,13 +10,3 @@
     color: #63739b;
     text-align: center;
 }
-
-.tweet-list .text_nothing {
-    text-align: center;
-    line-height: 44px;
-    background-color: #ceced2;
-    width: 100%;
-    display: block;
-    height: 44px;
-    color: #007aff;
-}
