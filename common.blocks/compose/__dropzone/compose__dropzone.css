@@ -1,0 +1,13 @@
+.compose__dropzone {
+    padding: 10px 4px;
+}
+
+.compose__dropzone .dropzone .dz-preview .dz-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.compose__dropzone .dropzone .dz-preview {
+    margin: 0;
+}

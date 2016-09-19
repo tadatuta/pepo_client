@@ -18,6 +18,7 @@ var fs = require('fs'),
     config = require('./config'),
     staticFolder = config.staticFolder,
 
+    getTweets = require('./get-tweets'),
     Render = require('./render'),
     render = Render.render,
     dropCache = Render.dropCache,
@@ -42,51 +43,15 @@ app.get('/ping/', function (req, res) {
 });
 
 app.get('/get-last', function (req, res) {
-    var url = config.servers.api_server + '/api/user',
-        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (answer) {
-            if (response.statusCode != 404) {
-                render(req, res, null, {
-                    block: 'tweets',
-                    tweets: answer.tweets_last
-                })
-            }
-        }
-    })
+    getTweets(req, res, 'tweets_last');
 });
 
 app.get('/get-pics', function (req, res) {
-    var url = config.servers.api_server + '/api/user',
-        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
+    getTweets(req, res, 'tweets_pics');
+});
 
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (answer) {
-            if (response.statusCode != 404) {
-                render(req, res, null, {
-                    block: 'tweets',
-                    tweets: answer.tweets_pics
-                })
-            }
-        }
-    })
+app.get('/get-likes', function (req, res) {
+    getTweets(req, res, 'tweets_liked');
 });
 
 app.get('/get-feed/:last_time', function (req, res) {
@@ -104,35 +69,9 @@ app.get('/get-feed/:last_time', function (req, res) {
 
         if (answer) {
             if (response.statusCode != 404) {
-                render(req, res, {
-                    limit: 10
-                }, {
-                    block: 'tweets',
-                    tweets: answer
-                })
-            }
-        }
-    })
-});
-
-app.get('/get-likes', function (req, res) {
-    var url = config.servers.api_server + '/api/user',
-        cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (answer) {
-            if (response.statusCode != 404) {
                 render(req, res, null, {
-                    block: 'tweets',
-                    tweets: answer.tweets_liked
+                    block: 'tweet-list',
+                    tweets: answer
                 })
             }
         }
@@ -169,53 +108,11 @@ app.get('/auth/', function (req, res) {
 
 });
 
-app.get('/comment/', function (req, res) {
-    render(req, res, {
-        view: 'comment',
-        title: 'comment'
-    })
-});
-
 app.get('/compose/', function (req, res) {
     render(req, res, {
         view: 'compose',
         title: 'Compose new tweet message'
     })
-});
-
-app.get('/comment/:id', function (req, res) {
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
-        url = config.servers.api_server + '/api/tweet/' + req.params.id;
-
-    request({
-        url: url,
-        headers: {
-            Cookie: cookie,
-            json: true
-        }
-    }, function (error, response, answer) {
-        answer = JSON.parse(answer);
-
-        if (response.statusCode == 403) {
-            res.redirect('/auth/');
-        }
-        else {
-            if (answer) {
-                render(req, res, {
-                    view: 'compose',
-                    title: 'Reply to tweet message',
-                    tweet_data: answer
-                })
-            }
-            else {
-                render(req, res, {
-                    view: '500',
-                    title: ''
-                })
-            }
-
-        }
-    });
 });
 
 app.get('/feed/', function (req, res) {
@@ -238,20 +135,13 @@ app.get('/feed/', function (req, res) {
             if (answer) {
                 answer.usemap = true;
                 render(req, res, {
-                    view: 'wall',
+                    view: 'feed',
                     title: 'Wall Page',
                     tweets: answer
                 })
             }
         }
     });
-});
-
-app.get('/map/', function (req, res) {
-    render(req, res, {
-        view: 'vmap',
-        title: 'My map'
-    })
 });
 
 app.get('/login/', function (req, res) {
@@ -430,13 +320,6 @@ app.get('/single/', function (req, res) {
         view: 'single',
         title: 'Single block',
         single: req.query.single
-    })
-});
-
-app.get('/image-upload/', function (req, res) {
-    render(req, res, {
-        view: 'image-upload',
-        title: 'Image upload'
     })
 });
 

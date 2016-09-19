@@ -1,0 +1,7 @@
+.compose__footer {
+    padding: 0 4px;
+    position: fixed;
+    bottom: 4px;
+    right: 0;
+    left: 0;
+}

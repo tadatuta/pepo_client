@@ -2,7 +2,7 @@ block('single-tweet')(
     content()(
         function () {
             return {
-                block: 'tweets',
+                block: 'tweet-list',
                 content: {
                     block: 'tweet'
                 }

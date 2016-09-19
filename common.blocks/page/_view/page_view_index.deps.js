@@ -1,7 +1,0 @@
-({
-    shouldDeps: [
-        'header',
-        'body',
-        'footer'
-    ]
-});

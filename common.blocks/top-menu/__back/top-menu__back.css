@@ -1,7 +1,0 @@
-.top-menu__back .icon {
-    background-image: url('../img/back-button.svg');
-}
-
-.top-menu__back.top-menu__back_disabled{
-    display: none;
-}

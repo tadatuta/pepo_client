@@ -1,4 +1,4 @@
-modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], function (provide, BEMDOM, BEMHTML, $, Tweets) {
+modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweet-list'], function (provide, BEMDOM, BEMHTML, $, Tweet_list) {
 
     provide(BEMDOM.decl(this.name, {
             onSetMod: {
@@ -7,21 +7,10 @@ modules.define('profile', ['i-bem__dom', 'BEMHTML', 'jquery', 'tweets'], functio
                         optional = this.elem('optional');
 
                     radio.bindTo('click', function () {
-                        var val = radio.getVal();
+                        var buttons = ['last', 'pics', 'likes'],
+                            val = buttons[radio.getVal()];
 
-                        switch (val) {
-                            case '0':
-                                Tweets.getTweets(optional, 'last');
-                                break;
-
-                            case '1' :
-                                Tweets.getTweets(optional, 'pics');
-                                break;
-
-                            case '2' :
-                                Tweets.getTweets(optional, 'likes');
-                                break;
-                        }
+                        Tweet_list.getTweets(optional, val);
                     });
                 }
             }

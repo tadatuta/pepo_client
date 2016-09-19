@@ -50,7 +50,7 @@ block('profile-edit')(
             elem: 'description',
             description: user_data.description
         }, {
-            elem: 'buttons'
+            elem: 'footer'
         });
 
         return content;

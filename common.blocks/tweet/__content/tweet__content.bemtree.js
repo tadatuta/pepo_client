@@ -12,47 +12,24 @@ block('tweet').elem('content')(
                 ];
 
             if (extras) {
-
-                if ((extras.url) && (!extras.attachment)) {
-                    content_right.push({
-                        block: 'tweet-url',
-                        content: [
-                            {
-                                block: 'link',
-                                url: extras.url,
-                                content: extras.url
-                            }
-                        ]
-                    });
-                }
-
-                if (extras.image) {
-                    content_right.push({
-                        block: 'tweet-image',
-                        content: [
-                            {
-                                block: 'image',
-                                url: extras.image
-                            }
-                        ]
-                    });
-                }
-
-                if (extras.attachment) {
-                    content_right.push({
-                        block: 'tweet-attachment',
-                        target: extras.attachment.target,
-                        url: extras.attachment.url,
-                        title: extras.attachment.title
-                    });
-                }
-
-                if (extras.geo) {
-                    content_right.push({
-                        block: 'tweet-geo',
-                        content: extras.geo
-                    });
-                }
+                content_right.push(
+                    extras.url ? {
+                        block: 'link',
+                        mix: { block: 'tweet', elem: 'url' },
+                        url: extras.url,
+                        content: extras.url
+                    } : '',
+                    extras.image ? {
+                        block: 'image',
+                        mix: { block: 'tweet', elem: 'image' },
+                        url: extras.image
+                    } : '',
+                    extras.attachment ? {
+                        block: 'image',
+                        mix: { block: 'tweet', elem: 'image' },
+                        url: extras.attachment.image
+                    } : ''
+                );
             }
 
             return content_right;
