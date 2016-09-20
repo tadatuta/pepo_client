@@ -153,8 +153,8 @@ app.get('/login/', function (req, res) {
 
 app.get('/profile-edit', function (req, res) {
 
-    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']);
-    var url = config.servers.api_server + '/api/user/';
+    var cookie = request.cookie('connect.sid=' + req.cookies['connect.sid']),
+        url = config.servers.api_server + '/api/user/';
 
     request({
         url: url,

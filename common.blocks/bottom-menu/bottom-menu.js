@@ -18,7 +18,7 @@ modules.define('bottom-menu', ['i-bem__dom', 'jquery'], function (provide, BEMDO
         _onMenuClick: function () {
             var buttons = this.findBlocksInside('button'),
                 links = [window.config.frontend_server + '/compose', window.config.frontend_server + '/feed',
-                    window.config.frontend_server + '/users-search', window.config.frontend_server + '/profile'];
+                    window.config.frontend_server + '/profile'];
 
             links.map(function (v, i) {
                 buttons[i].bindTo('click', function () {

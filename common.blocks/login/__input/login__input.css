@@ -1,12 +1,10 @@
-.login__input
-{
+.login__input {
     margin-bottom: 2%;
-	width: 100%;
-	display: block;
+    width: 100%;
+    display: block;
 }
 
-.login__input_has-error .input__box
-{
+.login__input.input_has-error .input__box {
     border: 1px solid #a94442;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
 }
