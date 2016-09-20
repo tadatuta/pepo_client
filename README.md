@@ -1,6 +1,6 @@
 # Фронтэнд часть проекта "pepo".
 
-https://travis-ci.org/Smolnikovp/pepo_client.svg?branch=dev
+[![Build Status](https://travis-ci.org/Smolnikovp/pepo_client.svg?branch=dev)](https://travis-ci.org/Smolnikovp/pepo_client)
 
 ## Установка и настройка
 
