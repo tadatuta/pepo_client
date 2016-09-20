@@ -24,7 +24,9 @@ describe('Блок tweet-list', function () {
 
     it('найти внутри ссылку с сообщением', function () {
         return this.browser
-            .scroll('.page', 0, 1000)
+            .scroll('.page', 0, 2000)
+            .scroll('.page', 0, 2000)
+            .scroll('.page', 0, 2000)
             .waitForVisible('.tweet-list .link_nothing')
             .getText('.tweet-list .link_nothing');
     });

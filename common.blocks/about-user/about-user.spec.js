@@ -21,8 +21,7 @@ describe('Блок about-user на странице profile', function () {
         return this.browser
             .url(config.servers.frontend_server + '/profile')
             .getText('.about-user .text_username')
-            .getText('.about-user .text_id')
-            .waitForExist('.about-user .text_about');
+            .getText('.about-user .text_id');
     });
 });
 
