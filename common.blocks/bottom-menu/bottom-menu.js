@@ -1,13 +1,26 @@
+/**
+ * @module bottom-menu
+ */
+
 modules.define('bottom-menu', ['i-bem__dom', 'jquery'], function (provide, BEMDOM) {
 
+    /**
+     * @class bottom-menu
+     * @bem
+     */
     provide(BEMDOM.decl(this.name, {
 
+        /**
+         * Returns links for menu buttons
+         * @private
+         * @returns {String} Links
+         */
         _onMenuClick: function () {
             var buttons = this.findBlocksInside('button'),
-                urls = [window.config.frontend_server + '/compose', window.config.frontend_server + '/feed',
+                links = [window.config.frontend_server + '/compose', window.config.frontend_server + '/feed',
                     window.config.frontend_server + '/users-search', window.config.frontend_server + '/profile'];
 
-            urls.map(function (v, i) {
+            links.map(function (v, i) {
                 buttons[i].bindTo('click', function () {
                     document.location.href = v;
                 });
