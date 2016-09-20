@@ -16,10 +16,6 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                         save_btn.setMod('disabled', false);
                     }, this);
 
-                    this.bindTo('save', 'click', function () {
-                        this.postTweet(image_upload, textarea);
-                    });
-
                     this.bindTo('add-image', 'click', function () {
                         that.toggleMod('dz');
                     });
@@ -27,8 +23,18 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                     textarea.on('change', function () {
                         var textarea_val = textarea.getVal();
 
-                        (!textarea_val || textarea_val.length > 140) ? save_btn.setMod('disabled', true) : save_btn.setMod('disabled', false);
+                        if (!textarea_val || textarea_val.length > 140) {
+                            save_btn.setMod('disabled', true);
+
+                            textarea_val.slice(0, 140);
+                        } else {
+                            save_btn.setMod('disabled', false);
+                        }
                     }, this);
+
+                    this.bindTo('save', 'click', function () {
+                        this.postTweet(image_upload, textarea);
+                    });
                 }
             },
 

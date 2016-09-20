@@ -25,8 +25,12 @@
     font-weight: 400;
     text-align: center;
     margin: 0;
-    display: table-cell;
     vertical-align: middle;
+    border:1px solid #ceced2;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    display: table-cell;
 }
 
 .profile-edit__dropzone.dropzone .dz-preview .dz-image {
