@@ -1,5 +1,12 @@
+/**
+ * @module compose
+ */
 modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, BEMDOM, BEMHTML, $) {
 
+    /**
+     * @class compose
+     * @bem
+     */
     provide(BEMDOM.decl(this.name,
         {
             onSetMod: {
@@ -21,24 +28,22 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                     });
 
                     textarea.on('change', function () {
-                        var textarea_val = textarea.getVal();
-
-                        if (!textarea_val || textarea_val.length > 140) {
-                            save_btn.setMod('disabled', true);
-
-                            textarea_val.slice(0, 140);
-                        } else {
-                            save_btn.setMod('disabled', false);
-                        }
+                        this._changeButtonMods(textarea, save_btn);
                     }, this);
 
                     this.bindTo('save', 'click', function () {
-                        this.postTweet(image_upload, textarea);
+                        this._postTweet(image_upload, textarea);
                     });
                 }
             },
 
-            postTweet: function (image_upload, textarea) {
+            /**
+             * Sends the tweet to the server and returns user to feed page
+             * @private
+             * @param image_upload {String} Image returned from dropzone block
+             * @param textarea {Object} block: 'textarea'
+             */
+            _postTweet: function (image_upload, textarea) {
                 var url,
                     that = this,
                     re = /(https?:\/\/|www)[^\n ,]+/g,
@@ -48,11 +53,6 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                 if (parse_url) {
                     url = parse_url[0];
                     textarea_val = textarea_val.toLowerCase().replace(re, '');
-
-                    //если ссылок больше одной, то у пользователя нет выхода - она будет удалена
-                    if (parse_url.length > 1) {
-                        textarea_val = textarea_val.toLowerCase().replace(re, '');
-                    }
                 }
 
                 $.ajax({
@@ -68,6 +68,23 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                     document.location.href = '/feed';
                     that.unbindFrom('save', 'click');
                 });
+            },
+
+            /**
+             * Change button mods
+             * @private
+             * @param input_block {Object} Input/textarea object
+             * @param button {Object} save_button object
+             * @returns button mods
+             */
+            _changeButtonMods: function (input_block, button) {
+                var input_val = input_block.getVal();
+
+                if (!input_val || input_val.length > 140) {
+                    return button.setMod('disabled', true);
+                } else {
+                    return button.setMod('disabled', false);
+                }
             }
         },
         {}));

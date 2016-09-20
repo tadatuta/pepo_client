@@ -1,5 +1,12 @@
+/**
+ * @module tweet-list
+ */
 modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, BEMDOM, BEMHTML, $) {
 
+    /**
+     * @class tweet-list
+     * @bem
+     */
     provide(BEMDOM.decl(this.name,
         {
             onSetMod: {
@@ -40,6 +47,12 @@ modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (prov
             }
         },
         {
+            /**
+             * Return array of tweets
+             * @param block {Object} Block name to add tweet-list
+             * @param rtn_tweets {String} Name of tweet to recieve
+             * @returns 10 last tweets specified type
+             */
             getTweets: function (block, rtn_tweets) {
                 $.ajax({
                     url: window.config.frontend_server + '/get-' + rtn_tweets,

@@ -308,13 +308,6 @@ app.get('/users/:login', function (req, res) {
     });
 });
 
-app.get('/users-search/', function (req, res) {
-    render(req, res, {
-        view: 'users-search',
-        title: 'Users Search'
-    })
-});
-
 app.get('/single/', function (req, res) {
     render(req, res, {
         view: 'single',
