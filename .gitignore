@@ -6,6 +6,9 @@ node_modules/
 out/
 static/*.min.*
 npm-debug.log
+coverage/
+*.specs/
+dist/
 
 
 # bem

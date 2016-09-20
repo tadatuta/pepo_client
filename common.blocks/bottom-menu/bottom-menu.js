@@ -15,7 +15,7 @@ modules.define('bottom-menu', ['i-bem__dom', 'jquery'], function (provide, BEMDO
          * @private
          * @returns {String} Links
          */
-        _onMenuClick: function () {
+        _addLinks: function () {
             var buttons = this.findBlocksInside('button'),
                 links = [window.config.frontend_server + '/compose', window.config.frontend_server + '/feed',
                     window.config.frontend_server + '/profile'];
@@ -29,7 +29,7 @@ modules.define('bottom-menu', ['i-bem__dom', 'jquery'], function (provide, BEMDO
     }, {
         live: function () {
             this.liveInitOnBlockInsideEvent('click', 'button', function () {
-                this._onMenuClick();
+                this._addLinks();
             });
         }
     }));
