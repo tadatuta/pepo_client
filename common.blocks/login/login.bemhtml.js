@@ -1,20 +1,23 @@
 block('login')(
     tag()('form'),
     js()(true),
-    content()(
-        [
+    content()(function () {
+        return [
             {
                 block: 'input',
-                mix: {block: 'login', elem: 'input'},
-                mods: {theme: 'islands', size: 'l'},
+                mix: { block: 'login', elem: 'input' },
+                mods: { theme: 'islands', size: 'l' },
                 placeholder: 'Придумай логин'
             },
             {
                 block: 'button',
-                mix: {block: 'login', elem: 'button'},
-                mods: {theme: 'islands', size: 'l', type: 'button'},
+                mix: { block: 'login', elem: 'add' },
+                mods: { theme: 'islands', size: 'l', type: 'button' },
                 text: 'Вход'
+            },
+            {
+                elem: 'error'
             }
-        ]
-    )
+        ];
+    })
 );
