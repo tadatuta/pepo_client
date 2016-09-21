@@ -52,7 +52,8 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
 
                 if (parse_url) {
                     url = parse_url[0];
-                    textarea_val = textarea_val.toLowerCase().replace(re, '');
+                } else {
+                    return ;
                 }
 
                 $.ajax({
