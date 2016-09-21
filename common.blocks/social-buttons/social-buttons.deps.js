@@ -1,9 +1,6 @@
 ({
     mustDeps: [
-        {block: 'image'},
-        {block: 'button'},
-        {block: 'icon'},
-        {elem: 'icon'},
-        {elem: 'wrap'}
+        { block: 'button', mods: { theme: 'islands', type: 'link' } },
+        { elem: ['vk', 'fb'] }
     ]
 });

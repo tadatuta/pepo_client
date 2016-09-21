@@ -2,8 +2,9 @@ block('tweet-list')(
     content()(function () {
         if (this.ctx.tweets.tweets.length == 0) {
             return {
-                block: 'text',
+                block: 'link',
                 mods: { nothing: true },
+                url: '/compose',
                 content: 'На данный момент ничего нет'
             };
         } else {

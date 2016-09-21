@@ -15,8 +15,9 @@ modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (prov
                         last_time = this.params.tweet_last_time,
                         body = this.findBlockOutside('body'),
                         nothing = {
-                            block: 'text',
+                            block: 'link',
                             mods: { nothing: true },
+                            url: '/compose',
                             content: 'На данный момент больше ничего нет'
                         };
 

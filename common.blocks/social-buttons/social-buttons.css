@@ -1,32 +1,22 @@
 .social-buttons {
-    display: table;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    left: 26%;
+    top: 35%;
 }
 
-.social-buttons__wrap {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-}
-
-.button.social-buttons {
-    display: block;
-    border: 0;
-    outline: none;
-    width: 100%;
-    margin: 1em 0;
+.social-buttons .social-buttons__vk,
+.social-buttons .social-buttons__fb {
+    width: 60px;
+    height: 60px;
+    margin: 0 10px;
     border-radius: 5px;
-    height: 25px;
 }
 
-.button_social_vk {
-    background-color: #2a5885;
-    color: white;
-}
-
-.button_social_facebook {
-    background-color: #3b5998;
-    color: white;
+.social-buttons__fb.button_theme_islands.button_size_m .icon,
+.social-buttons__vk.button_theme_islands.button_size_m .icon {
+    background-size: cover;
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
 }
