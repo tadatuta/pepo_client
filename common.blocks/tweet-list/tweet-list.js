@@ -21,18 +21,6 @@ modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (prov
                             content: 'На данный момент больше ничего нет'
                         };
 
-                    $('.tweet').ready(function () {
-                        // Get each div
-                        $('.tweet__content').each(function () {
-                            var str = $(this).html(),
-                                regex = /(https?:\/\/([\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/ig;
-
-                            var replaced_text = str.replace(regex, '<a href="$1" target="_blank">$1</a>');
-                            // Echo link
-                            $(this).html(replaced_text);
-                        });
-                    });
-
                     var inProgress = false;
                     this.bindToWin('scroll', function () {
 

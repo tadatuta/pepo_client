@@ -50,10 +50,11 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                     textarea_val = textarea.getVal(),
                     parse_url = textarea_val.toLowerCase().match(re);
 
-                if (parse_url) {
-                    url = parse_url[0];
-                } else {
+                if (textarea_val == parse_url[0]) {
                     url = undefined;
+                    textarea_val = parse_url[0];
+                } else {
+                    url = parse_url[0];
                 }
 
                 $.ajax({
