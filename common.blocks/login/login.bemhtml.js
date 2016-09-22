@@ -7,6 +7,7 @@ block('login')(
                 block: 'input',
                 mix: { block: 'login', elem: 'input' },
                 mods: { theme: 'islands', size: 'l' },
+                name: 'login',
                 placeholder: 'Придумай логин'
             },
             {

@@ -20,6 +20,8 @@ block('tweet-list')(
                     var username = users[v.author].firstName + ' ' + users[v.author].lastName;
                 } else if (!users[v.author].firstName || !users[v.author].lastName) {
                     var username = users[v.author].firstName || users[v.author].lastName;
+                } else {
+                    var username = null;
                 }
 
                 var diff_time = moment(tweets[i].timestamp).fromNow();

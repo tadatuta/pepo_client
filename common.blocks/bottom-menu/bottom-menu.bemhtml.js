@@ -15,6 +15,7 @@ block('bottom-menu')(
                     }
                 };
 
+            rtn_btns.mods[mods[i]] = true;
             rtn_btns.icon.mods[mods[i]] = true;
 
             return rtn_btns;

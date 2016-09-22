@@ -59,6 +59,7 @@ modules.define('tweet', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide, 
                                 that.setMod('type', 'good');
                                 that.setMod('enabled');
                                 that.setText(msg.tweets[0].extras.retweets.length);
+                                document.location.href = '/compose';
                             });
                         } else {
                             this._addDelAction(that, 'retweet', 'DELETE').done(function (msg) {
