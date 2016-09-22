@@ -37,7 +37,7 @@ modules.define('tweet-list', ['i-bem__dom', 'BEMHTML', 'jquery'], function (prov
                     this.bindToWin('scroll', function () {
 
                         this.unbindFrom('scroll');
-                        if ($(window).scrollTop() + $(window).height() >= $(document).height() + 20 && !inProgress) {
+                        if ($(window).scrollTop() + $(window).height() >= $(document).height() && !inProgress) {
 
                             inProgress = true;
                             $.ajax({

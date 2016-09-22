@@ -24,16 +24,6 @@ describe('Логин', function () {
     });
 });
 
-describe('Блок tweet-list', function () {
-    it('найти внутри блок твита', function () {
-        return this.browser
-            .waitForVisible('.tweet-list .tweet');
-    });
+describe('Блок about-user', function () {
 
-    it('найти внутри ссылку с сообщением', function () {
-        return this.browser
-            .scroll('.page', 0, 1000)
-            .waitForVisible('.tweet-list .link_nothing')
-            .getText('.tweet-list .link_nothing');
-    });
 });

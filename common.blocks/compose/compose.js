@@ -53,7 +53,7 @@ modules.define('compose', ['i-bem__dom', 'BEMHTML', 'jquery'], function (provide
                 if (parse_url) {
                     url = parse_url[0];
                 } else {
-                    return ;
+                    url = undefined;
                 }
 
                 $.ajax({
