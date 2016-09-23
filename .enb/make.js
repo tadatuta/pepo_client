@@ -120,6 +120,7 @@ module.exports = function (config) {
                 levels: getLibLevels(platform),
                 sourceLevels: getSpecLevels(platform),
                 jsSuffixes: ['vanilla.js', 'browser.js', 'js'],
+                depsTech: enbBemTechs.deps,
                 scripts: ['https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js'],
                 templateEngine: {
                     bemtreeTemplateTech: require('enb-bemxjst/techs/bemtree'),
@@ -129,7 +130,7 @@ module.exports = function (config) {
                     htmlTechOptionNames: { bemjsonFile: 'bemjsonFile', templateFile: 'bemhtmlFile' }
                 }
             });
-            configureNodes(platform, [platform + '.tests/*/*', platform + '.examples/*/*']);
+            // configureNodes(platform, [platform + '.tests/*/*', platform + '.examples/*/*']);
         });
     }
 
@@ -143,6 +144,18 @@ module.exports = function (config) {
         var platformNames = (PLATFORMS[platform] || SETS[platform]),
             levels = [];
 
+        platformNames.forEach(function(name) {
+            levels.push({ path : path.join('libs', 'bem-core', name + '.blocks'), check : false });
+        });
+
+        platformNames.forEach(function(name) {
+            levels.push({ path : path.join('libs', 'bem-components', name + '.blocks'), check : true });
+        });
+
+        platformNames.forEach(function(name) {
+            levels.push({ path : path.join('libs', 'bem-components', 'design', name + '.blocks'), check : true });
+        });
+
         platformNames.forEach(function (name) {
             levels.push({ path: path.join('./common.blocks/'), check: false });
         });
@@ -154,7 +167,7 @@ module.exports = function (config) {
 
     function getSpecLevels(platform) {
         return [].concat(
-            { path: path.join('./common.blocks/'), check: false },
+            { path: path.join('libs', 'bem-pr', 'spec.blocks'), check: false },
             getSourceLevels(platform)
         );
     }
