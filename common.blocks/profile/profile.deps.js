@@ -1,6 +1,6 @@
 ({
     shouldDeps: [
-        { elem: ['header', 'body', 'radio', 'optional', 'to-edit', 'about-user', 'avatar'] },
+        { elem: ['header', 'body', 'radio', 'optional', 'to-edit', 'to-feed', 'about-user', 'avatar'] },
         { block: 'tweet-list' },
         { block: 'hidden-menu' }
     ]

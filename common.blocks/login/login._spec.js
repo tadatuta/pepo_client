@@ -22,20 +22,30 @@ describe('Блок login', function () {
             .waitForExist('.page_view_signup')
             .waitForVisible('.login');
     });
+});
 
-    it('должны быть input и кнопка', function () {
+describe('В блоке должны быть', function () {
+    it('поле ввода', function () {
         return this.browser
-            .waitForVisible('.login__add')
             .waitForVisible('.login__input');
     });
 
+    it('кнопка', function () {
+        return this.browser
+            .waitForVisible('.login__add');
+    });
+});
+
+describe('При ошибке', function () {
     it('сменить цвет рамки input при входе без введенного текста', function () {
         return this.browser
             .click('.login__add')
             .waitForVisible('.input_has-error');
     });
+});
 
-    it('после ввода логина должен переадресовать на profile-edit', function () {
+describe('Если введен логин', function () {
+    it('должен переадресовать на profile-edit', function () {
         return this.browser
             .setValue('[name=\'login\']', 'johndoe')
             .click('.login__add')

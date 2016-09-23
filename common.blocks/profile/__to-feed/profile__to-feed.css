@@ -1,18 +1,18 @@
-.profile__to-edit {
+.profile__to-feed {
     background-color: inherit;
     border: none;
     font-size: 25px;
     position: absolute;
     top: 4px;
-    right: 4px;
+    left: 4px;
 }
 
-.profile__to-edit.button_pressed {
+.profile__to-feed.button_pressed {
     background: none;
     box-shadow: none;
 }
 
-.profile__to-edit .icon {
-    background-image: url('img/edit.svg');
+.profile__to-feed .icon {
+    background-image: url('img/left-arrow.svg');
     line-height: 25px;
 }

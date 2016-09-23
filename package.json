@@ -46,6 +46,7 @@
     "enb-magic-factory": "^0.5.0",
     "enb-modules": "^0.3.0",
     "enb-stylus": "^2.3.2",
+    "hermione": "^0.13.0",
     "eslint": "^3.4.0",
     "eslint-config-loris": "^5.1.0",
     "eslint-plugin-bem-xjst": "^2.0.0",
@@ -53,6 +54,7 @@
     "mocha": "^3.0.2",
     "nodemon": "^1.9.2",
     "precommit-hook-eslint": "^3.0.0",
+    "selenium-standalone": "^5.7.2",
     "watchify": "^3.7.0",
     "ym": "^0.1.2"
   },

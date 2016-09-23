@@ -1,3 +1,7 @@
 .compose__footer {
     padding: 0 4px;
 }
+
+.compose__footer .button_type_link {
+    width: 100%;
+}

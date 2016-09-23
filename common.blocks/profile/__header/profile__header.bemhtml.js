@@ -12,6 +12,15 @@ block('profile').elem('header')(
                     }
                 },
                 {
+                    block: 'button',
+                    mods: { theme: 'simple', type: 'link' },
+                    mix: { block: 'profile', elem: 'to-feed' },
+                    url: '/feed',
+                    icon: {
+                        block: 'icon'
+                    }
+                },
+                {
                     block: 'image',
                     mods: { type: 'avatar' },
                     mix: { block: 'profile', elem: 'avatar' },

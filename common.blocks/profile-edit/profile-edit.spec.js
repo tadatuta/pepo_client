@@ -12,20 +12,14 @@ describe('Войти', function () {
             .waitForVisible('.popup_login_btn')
             .setValue('[name=\'email\']', '+79788401345')
             .setValue('[name=\'pass\']', 'Counter1')
-            .click('.popup_login_btn');
+            .click('.popup_login_btn')
+            .url(config.servers.frontend_server + '/profile-edit');
     });
 });
 
-describe('Блок tweet-list', function () {
-    it('найти внутри блок твита', function () {
+describe('Блок profile-edit', function () {
+    it('должен быть на странице', function () {
         return this.browser
-            .waitForVisible('.tweet-list .tweet');
-    });
-
-    it('найти внутри ссылку с сообщением', function () {
-        return this.browser
-            .scroll('.page', 0, 1000)
-            .waitForVisible('.tweet-list .link_nothing')
-            .getText('.tweet-list .link_nothing');
+            .waitForVisible('.profile-edit');
     });
 });

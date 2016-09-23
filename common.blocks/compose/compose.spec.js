@@ -23,15 +23,39 @@ describe('Блок compose', function () {
             .waitForExist('.page_view_compose')
             .waitForVisible('.compose');
     });
+});
 
-    it('должны быть поле ввода текста, три кнопки', function () {
+describe('У блока compose должны быть: ', function () {
+    it('поле ввода текста', function () {
         return this.browser
-            .waitForVisible('.compose__textarea')
-            .waitForVisible('.compose__add-image')
-            .waitForVisible('.compose__save')
-            .waitForVisible('.button_back');
+            .waitForVisible('.compose__textarea');
     });
 
+    it('кнопка для добавления картинки', function () {
+        return this.browser
+            .waitForVisible('.compose__add-image');
+    });
+
+    it('кнопка "Отправить"', function () {
+        return this.browser
+            .waitForVisible('.compose__save');
+    });
+
+    it('кнопка "Назад"', function () {
+        return this.browser
+            .waitForVisible('.button_back');
+    });
+});
+
+describe('Отобразить поле добавления изображения', function () {
+    it('', function () {
+        return this.browser
+            .click('.compose__add-image')
+            .waitForVisible('.dropzone');
+    });
+});
+
+describe('Действия над кнопкой "Отправить"', function () {
     it('найти неактивную кнопку отправки', function () {
         return this.browser
             .waitForVisible('.compose__save.button_disabled');
@@ -43,12 +67,6 @@ describe('Блок compose', function () {
             .waitForVisible('.compose__save.button');
     });
 
-    it('вывести на страницу блок dropzone', function () {
-        return this.browser
-            .click('.compose__add-image')
-            .waitForVisible('.dropzone');
-    });
-
     it('отправить твит', function () {
         return this.browser
             .setValue('[name=\'content\'', 'somecontent https://vk.com')
@@ -56,7 +74,9 @@ describe('Блок compose', function () {
             .waitForExist('.page_view_feed')
             .waitForVisible('.tweet-list');
     });
+});
 
+describe('Нажать на кнопку "Назад"', function () {
     it('вернуть на feed, без отправки твита', function () {
         return this.browser
             .url(config.servers.frontend_server + '/compose')

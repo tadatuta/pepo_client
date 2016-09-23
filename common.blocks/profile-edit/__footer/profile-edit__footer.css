@@ -5,3 +5,7 @@
     left: 0;
     right: 0;
 }
+
+.profile-edit__footer .button_type_link {
+    width: 100%;
+}
